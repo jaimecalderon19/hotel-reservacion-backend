@@ -1,12 +1,21 @@
-import express, { Express, Request, Response } from 'express';
+import express from "express";
+import cors from "cors"
+import {connect} from "mongoose"
+import authRoutes from "./routes/authRoutes"
 
-const app: Express = express();
-const port = 3000;
+const app = express();
+const port = process.env.PORT || 8000;
+app.use(cors())
+app.use(express.json())
+app.use("/api/auth",authRoutes);
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('¡Hola mundo con Express y TypeScript!');
-});
+
+const mongUri = process.env.MONGO_URI ?? ''
+const mongDatabase = process.env.DATABASE ?? 'LinkTIC'
+
+connect(mongUri, {dbName:mongDatabase})
+
 
 app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`Listening on port ${port}...`);
 });
