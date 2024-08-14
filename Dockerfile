@@ -18,10 +18,10 @@ RUN npm run build
 
 # Expone el puerto en el que se ejecutará la aplicación
 # (Asegúrate de que este sea el puerto correcto que usa tu aplicación)
-EXPOSE 3000
+EXPOSE 8000
 
 # Define la variable de entorno para ejecutar en modo producción
 ENV NODE_ENV=production
 
 # Comando para ejecutar la aplicación
-CMD ["npm", "prod"]
+CMD ["npm", "run", "prod"]
