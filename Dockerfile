@@ -24,4 +24,4 @@ EXPOSE 3000
 ENV NODE_ENV=production
 
 # Comando para ejecutar la aplicación
-CMD ["npm", "start"]
+CMD ["npm", "prodStart"]
