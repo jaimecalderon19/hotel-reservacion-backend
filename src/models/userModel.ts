@@ -2,7 +2,6 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 // Interfaz para representar un usuario
 export interface IUser extends Document {
-  username: string;
   email: string;
   password: string;
   firstName: string;
@@ -15,12 +14,6 @@ export interface IUser extends Document {
 
 // Schema de usuario
 const userSchema = new Schema<IUser>({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-  },
   email: {
     type: String,
     required: true,

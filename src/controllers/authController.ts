@@ -12,9 +12,9 @@ class AuthController {
 
   public register = async (req: Request, res: Response): Promise<void> => {
     try {
-      const { name, last_name, phone, email, sex, date_of_birth, password } = req.body;
+      const { username, lastName, firstName, phoneNumber, email, password } = req.body;
 
-      const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
+      const existingUser = await User.findOne({ $or: [{ email }, { phoneNumber }] });
       if (existingUser) {
         console.log("error user exist");
         
@@ -25,13 +25,12 @@ class AuthController {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const newUser = new User({
-        name,
-        last_name,
-        phone,
+        username,
         email,
-        sex,
-        date_of_birth,
         password: hashedPassword,
+        firstName,
+        lastName,
+        phoneNumber,
       });
 
       await newUser.save();
